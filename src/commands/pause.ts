@@ -1,16 +1,15 @@
-const { MessageEmbed } = require("discord.js");
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { Builder } = require("@discordjs/builders");
 
 module.exports = {
-    data: new SlashCommandBuilder()
+    data: new Builder.SlashCommandBuilder()
         .setName("일시정지")
         .setDescription("음악을 일시정지합니다.")
-        .addNumberOption((option) =>
+        .addNumberOption((option: any) =>
             option
                 .setName("시간")
                 .setDescription("일시정지할 시간을 입력하세요. (초)")
         ),
-    async execute(interaction) {
+    async execute(interaction: any) {
         await interaction.deferReply();
         let guildQueue = interaction.client.player.getQueue(
             interaction.guildId
@@ -19,7 +18,7 @@ module.exports = {
         if (!guildQueue) {
             await interaction.editReply({
                 embeds: [
-                    new MessageEmbed()
+                    new Discord.MessageEmbed()
                         .setColor("#ff0000")
                         .setTitle(":warning: 오류")
                         .setDescription("재생 중인 음악이 없습니다."),
@@ -29,7 +28,7 @@ module.exports = {
             guildQueue.setPaused(true);
             await interaction.editReply({
                 embeds: [
-                    new MessageEmbed()
+                    new Discord.MessageEmbed()
                         .setColor("#ffff00")
                         .setTitle(":pause_button: 일시정지")
                         .setDescription(
@@ -51,7 +50,7 @@ module.exports = {
                     guildQueue.setPaused(false);
                     await interaction.followUp({
                         embeds: [
-                            new MessageEmbed()
+                            new Discord.MessageEmbed()
                                 .setColor("#0067a3")
                                 .setTitle(":arrow_forward: 재생 중")
                                 .setDescription(
@@ -66,6 +65,6 @@ module.exports = {
     },
 };
 
-function sleep(ms) {
+function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }

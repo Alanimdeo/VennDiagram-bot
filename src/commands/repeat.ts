@@ -1,11 +1,10 @@
-const { MessageEmbed } = require("discord.js");
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { Builder } = require("@discordjs/builders");
 
 module.exports = {
-    data: new SlashCommandBuilder()
+    data: new Builder.SlashCommandBuilder()
         .setName("반복")
         .setDescription("곡의 반복을 설정합니다.")
-        .addIntegerOption((option) =>
+        .addIntegerOption((option: any) =>
             option
                 .setName("설정")
                 .setDescription(
@@ -16,7 +15,7 @@ module.exports = {
                 .addChoice("곡", 1)
                 .addChoice("목록", 2)
         ),
-    async execute(interaction) {
+    async execute(interaction: any) {
         await interaction.deferReply();
         let guildQueue = interaction.client.player.getQueue(
             interaction.guildId
@@ -30,7 +29,7 @@ module.exports = {
                     : "repeat_one";
             await interaction.editReply({
                 embeds: [
-                    new MessageEmbed()
+                    new Discord.MessageEmbed()
                         .setColor("#008000")
                         .setTitle(
                             `:${emoji}: 반복 ${
@@ -62,7 +61,7 @@ module.exports = {
         } else {
             await interaction.editReply({
                 embeds: [
-                    new MessageEmbed()
+                    new Discord.MessageEmbed()
                         .setColor("#ff0000")
                         .setTitle(":warning: 오류")
                         .setDescription("재생 중인 음악이 없습니다."),

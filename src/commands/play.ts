@@ -1,17 +1,16 @@
-const { MessageEmbed } = require("discord.js");
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { Builder } = require("@discordjs/builders");
 
 module.exports = {
-    data: new SlashCommandBuilder()
+    data: new Builder.SlashCommandBuilder()
         .setName("재생")
         .setDescription("음악을 재생합니다.")
-        .addStringOption((option) =>
+        .addStringOption((option: any) =>
             option
                 .setName("제목")
                 .setDescription("음악 제목을 입력하세요.")
                 .setRequired(false)
         ),
-    async execute(interaction) {
+    async execute(interaction: any) {
         await interaction.deferReply();
         let guildQueue = interaction.client.player.getQueue(
             interaction.guildId
@@ -23,13 +22,13 @@ module.exports = {
             await queue.join(interaction.member.voice.channel);
             let song = await queue
                 .play(interaction.options.getString("제목"))
-                .catch((_) => {
+                .catch(() => {
                     if (!guildQueue) queue.stop();
                 });
             console.log(song);
             await interaction.editReply({
                 embeds: [
-                    new MessageEmbed()
+                    new Discord.MessageEmbed()
                         .setColor("#008000")
                         .setTitle(":white_check_mark: 추가 완료")
                         .setDescription(
@@ -44,7 +43,7 @@ module.exports = {
                     guildQueue.setPaused(false);
                     await interaction.editReply({
                         embeds: [
-                            new MessageEmbed()
+                            new Discord.MessageEmbed()
                                 .setColor("#0067a3")
                                 .setTitle(":arrow_forward: 재생")
                                 .setDescription(
@@ -56,7 +55,7 @@ module.exports = {
                 } catch (err) {
                     await interaction.editReply({
                         embeds: [
-                            new MessageEmbed()
+                            new Discord.MessageEmbed()
                                 .setColor("#ff0000")
                                 .setTitle(":warning: 오류")
                                 .setDescription("재생할 음악이 없습니다."),
@@ -66,7 +65,7 @@ module.exports = {
             } else
                 await interaction.editReply({
                     embeds: [
-                        new MessageEmbed()
+                        new Discord.MessageEmbed()
                             .setColor("#ff0000")
                             .setTitle(":warning: 오류")
                             .setDescription("재생할 음악이 없습니다."),
