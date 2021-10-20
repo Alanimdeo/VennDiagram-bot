@@ -1,7 +1,7 @@
-const { Builder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 module.exports = {
-    data: new Builder.SlashCommandBuilder()
+    data: new SlashCommandBuilder()
         .setName("반복")
         .setDescription("곡의 반복을 설정합니다.")
         .addIntegerOption((option: any) =>

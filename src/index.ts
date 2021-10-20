@@ -2,7 +2,6 @@ console.log("모듈 로딩 중..");
 const fs = require("fs");
 const Discord = require("discord.js");
 const { Player } = require("discord-music-player");
-
 const config = require("./config.json");
 console.log("모듈 로딩 완료!");
 
@@ -29,6 +28,7 @@ for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     console.log(`명령어 불러오는 중.. (${command.data.name})`);
     client.commands.set(command.data.name, command);
+    console.log(client.commands);
 }
 
 const adminCommandFiles = fs
@@ -73,7 +73,7 @@ client.on("messageCreate", async (message: typeof Discord.Message) => {
     if (!command) return;
     console.log(command);
 
-    await command.execute(message);
+    await command.execute(message, client.commands);
 });
 
 console.log("Discord 서버에 로그인 중..");

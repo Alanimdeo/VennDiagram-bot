@@ -1,9 +1,8 @@
-const { Builder } = require("@discordjs/builders");
-
 const { Song } = require("discord-music-player");
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 module.exports = {
-    data: new Builder.SlashCommandBuilder()
+    data: new SlashCommandBuilder()
         .setName("목록")
         .setDescription("재생 목록을 확인합니다."),
     async execute(interaction: any) {

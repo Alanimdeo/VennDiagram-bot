@@ -1,7 +1,7 @@
-const { Builder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 module.exports = {
-    data: new Builder.SlashCommandBuilder()
+    data: new SlashCommandBuilder()
         .setName("삭제")
         .setDescription("재생 목록에서 곡을 삭제합니다.")
         .addIntegerOption((option: any) =>

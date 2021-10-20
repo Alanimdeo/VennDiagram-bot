@@ -8,40 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 console.log("모듈 로딩 중..");
-var fs = require("fs");
-var Discord = require("discord.js");
-var Player = require("discord-music-player").Player;
-var config = require("./config.json");
+const fs = require("fs");
+const Discord = require("discord.js");
+const { Player } = require("discord-music-player");
+const config = require("./config.json");
 console.log("모듈 로딩 완료!");
-var client = new Discord.Client({
+const client = new Discord.Client({
     intents: [
         Discord.Intents.FLAGS.GUILDS,
         Discord.Intents.FLAGS.GUILD_MESSAGES,
@@ -54,66 +27,47 @@ client.player = new Player(client, {
 });
 client.commands = new Discord.Collection();
 client.adminCommands = new Discord.Collection();
-var commandFiles = fs
+const commandFiles = fs
     .readdirSync("./commands")
-    .filter(function (file) { return file.endsWith(".js"); });
-for (var _i = 0, commandFiles_1 = commandFiles; _i < commandFiles_1.length; _i++) {
-    var file = commandFiles_1[_i];
-    var command = require("./commands/" + file);
-    console.log("\uBA85\uB839\uC5B4 \uBD88\uB7EC\uC624\uB294 \uC911.. (" + command.data.name + ")");
+    .filter((file) => file.endsWith(".js"));
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    console.log(`명령어 불러오는 중.. (${command.data.name})`);
     client.commands.set(command.data.name, command);
+    console.log(client.commands);
 }
-var adminCommandFiles = fs
+const adminCommandFiles = fs
     .readdirSync("./adminCommands")
-    .filter(function (file) { return file.endsWith(".js"); });
-for (var _a = 0, adminCommandFiles_1 = adminCommandFiles; _a < adminCommandFiles_1.length; _a++) {
-    var file = adminCommandFiles_1[_a];
-    var command = require("./adminCommands/" + file);
-    console.log("\uAD00\uB9AC\uC790 \uBA85\uB839\uC5B4 \uBD88\uB7EC\uC624\uB294 \uC911.. (" + command.data.name + ")");
+    .filter((file) => file.endsWith(".js"));
+for (const file of adminCommandFiles) {
+    const command = require(`./adminCommands/${file}`);
+    console.log(`관리자 명령어 불러오는 중.. (${command.data.name})`);
     client.adminCommands.set(command.data.command, command);
 }
-client.once("ready", function () {
-    console.log("\uB85C\uADF8\uC778 \uC644\uB8CC! \uD1A0\uD070: \u001B[32m" + config.token + "\u001B[0m\n\uC900\uBE44 \uC644\uB8CC!");
+client.once("ready", () => {
+    console.log(`로그인 완료! 토큰: \x1b[32m${config.token}\x1b[0m\n준비 완료!`);
 });
-client.on("interactionCreate", function (interaction) { return __awaiter(void 0, void 0, void 0, function () {
-    var command;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (!interaction.isCommand())
-                    return [2 /*return*/];
-                command = client.commands.get(interaction.commandName);
-                if (!command)
-                    return [2 /*return*/];
-                return [4 /*yield*/, command.execute(interaction)];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
-client.on("messageCreate", function (message) { return __awaiter(void 0, void 0, void 0, function () {
-    var command;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (message.author.bot)
-                    return [2 /*return*/];
-                console.log("msg");
-                if (!message.content.toLowerCase().startsWith("=admin"))
-                    return [2 /*return*/];
-                console.log(message.content);
-                console.log(message.content.split(" ")[1]);
-                command = client.adminCommands.get(message.content.split(" ")[1]);
-                if (!command)
-                    return [2 /*return*/];
-                console.log(command);
-                return [4 /*yield*/, command.execute(message)];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
+client.on("interactionCreate", (interaction) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!interaction.isCommand())
+        return;
+    const command = client.commands.get(interaction.commandName);
+    if (!command)
+        return;
+    yield command.execute(interaction);
+}));
+client.on("messageCreate", (message) => __awaiter(void 0, void 0, void 0, function* () {
+    if (message.author.bot)
+        return;
+    console.log("msg");
+    if (!message.content.toLowerCase().startsWith("=admin"))
+        return;
+    console.log(message.content);
+    console.log(message.content.split(" ")[1]);
+    const command = client.adminCommands.get(message.content.split(" ")[1]);
+    if (!command)
+        return;
+    console.log(command);
+    yield command.execute(message, client.commands);
+}));
 console.log("Discord 서버에 로그인 중..");
 client.login(config.token);

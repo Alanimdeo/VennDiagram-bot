@@ -1,7 +1,7 @@
-const { Builder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 module.exports = {
-    data: new Builder.SlashCommandBuilder()
+    data: new SlashCommandBuilder()
         .setName("다음")
         .setDescription("다음 곡을 바로 재생합니다."),
     async execute(interaction: any) {

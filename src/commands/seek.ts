@@ -1,7 +1,7 @@
-const { Builder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 module.exports = {
-    data: new Builder.SlashCommandBuilder()
+    data: new SlashCommandBuilder()
         .setName("이동")
         .setDescription(
             "지정한 시간으로 이동합니다. `[시간:]분:초` 또는 `초` 형식으로 입력 가능합니다."

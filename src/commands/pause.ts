@@ -1,7 +1,7 @@
-const { Builder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 
 module.exports = {
-    data: new Builder.SlashCommandBuilder()
+    data: new SlashCommandBuilder()
         .setName("일시정지")
         .setDescription("음악을 일시정지합니다.")
         .addNumberOption((option: any) =>
