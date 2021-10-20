@@ -64,7 +64,11 @@ client.on("messageCreate", async (message: typeof Discord.Message) => {
     if (message.author.bot) return;
     console.log("msg");
 
-    if (!message.content.toLowerCase().startsWith("=admin")) return;
+    if (
+        !message.content.toLowerCase().startsWith("=admin") ||
+        !config.adminIDs.includes(message.author.id)
+    )
+        return;
     console.log(message.content);
     console.log(message.content.split(" ")[1]);
 
