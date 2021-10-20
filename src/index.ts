@@ -28,7 +28,6 @@ for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     console.log(`명령어 불러오는 중.. (${command.data.name})`);
     client.commands.set(command.data.name, command);
-    console.log(client.commands);
 }
 
 const adminCommandFiles = fs
