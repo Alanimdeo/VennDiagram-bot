@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const builders_1 = require("@discordjs/builders");
+const discord_js_1 = require("discord.js");
 module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("이동")
@@ -72,7 +73,7 @@ module.exports = {
                 guildQueue.seek(seekTime);
                 yield interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new discord_js_1.MessageEmbed()
                             .setColor("#0067a3")
                             .setTitle(":fast_forward: 시간 이동 완료")
                             .setDescription(`재생 시간을 \`${displayTime}\`으로 이동했습니다.`),
@@ -82,7 +83,7 @@ module.exports = {
             else {
                 yield interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new discord_js_1.MessageEmbed()
                             .setColor("#ff0000")
                             .setTitle(":warning: 오류")
                             .setDescription("재생 중인 음악이 없습니다."),

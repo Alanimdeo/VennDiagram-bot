@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import { MessageEmbed } from "discord.js";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -66,7 +67,7 @@ module.exports = {
             guildQueue.seek(seekTime);
             await interaction.editReply({
                 embeds: [
-                    new Discord.MessageEmbed()
+                    new MessageEmbed()
                         .setColor("#0067a3")
                         .setTitle(":fast_forward: 시간 이동 완료")
                         .setDescription(
@@ -77,7 +78,7 @@ module.exports = {
         } else {
             await interaction.editReply({
                 embeds: [
-                    new Discord.MessageEmbed()
+                    new MessageEmbed()
                         .setColor("#ff0000")
                         .setTitle(":warning: 오류")
                         .setDescription("재생 중인 음악이 없습니다."),

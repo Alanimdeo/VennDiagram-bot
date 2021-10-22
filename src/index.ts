@@ -32,7 +32,7 @@ for (const file of commandFiles) {
 
 const adminCommandFiles = fs
     .readdirSync("./adminCommands")
-    .filter((file: string) => file.endsWith(".js"));
+    .filter((file: string) => file.endsWith(".js") || file.endsWith(".ts"));
 
 for (const file of adminCommandFiles) {
     const command = require(`./adminCommands/${file}`);
@@ -64,7 +64,9 @@ client.on("messageCreate", async (message: typeof Discord.Message) => {
     console.log("msg");
 
     if (
-        !message.content.toLowerCase().startsWith("=admin") ||
+        !message.content
+            .toLowerCase()
+            .startsWith(config.adminPrefix + "admin") ||
         !config.adminIDs.includes(message.author.id)
     )
         return;

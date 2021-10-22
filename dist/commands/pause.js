@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const builders_1 = require("@discordjs/builders");
+const discord_js_1 = require("discord.js");
 module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("일시정지")
@@ -25,7 +26,7 @@ module.exports = {
             if (!guildQueue) {
                 yield interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new discord_js_1.MessageEmbed()
                             .setColor("#ff0000")
                             .setTitle(":warning: 오류")
                             .setDescription("재생 중인 음악이 없습니다."),
@@ -36,7 +37,7 @@ module.exports = {
                 guildQueue.setPaused(true);
                 yield interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new discord_js_1.MessageEmbed()
                             .setColor("#ffff00")
                             .setTitle(":pause_button: 일시정지")
                             .setDescription(`현재 재생 중인 [${guildQueue.nowPlaying.name}](${guildQueue.nowPlaying.url})을(를) ${interaction.options.getNumber("시간")
@@ -50,7 +51,7 @@ module.exports = {
                         guildQueue.setPaused(false);
                         yield interaction.followUp({
                             embeds: [
-                                new Discord.MessageEmbed()
+                                new discord_js_1.MessageEmbed()
                                     .setColor("#0067a3")
                                     .setTitle(":arrow_forward: 재생 중")
                                     .setDescription(`[${guildQueue.nowPlaying.name}](${guildQueue.nowPlaying.url}) \`(${guildQueue.nowPlaying.duration})\`을(를) 다시 재생합니다.`)

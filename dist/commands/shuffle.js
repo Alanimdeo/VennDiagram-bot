@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const builders_1 = require("@discordjs/builders");
+const discord_js_1 = require("discord.js");
 module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("셔플")
@@ -23,7 +24,7 @@ module.exports = {
                     guildQueue.shuffle();
                     yield interaction.editReply({
                         embeds: [
-                            new Discord.MessageEmbed()
+                            new discord_js_1.MessageEmbed()
                                 .setColor("#ff0000")
                                 .setTitle(":twisted_rightwards_arrows: 셔플")
                                 .setDescription("곡을 섞었습니다."),
@@ -37,7 +38,7 @@ module.exports = {
             else {
                 yield interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new discord_js_1.MessageEmbed()
                             .setColor("#ff0000")
                             .setTitle(":warning: 오류")
                             .setDescription("재생 중인 음악이 없습니다."),

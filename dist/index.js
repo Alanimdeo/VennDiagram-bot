@@ -37,7 +37,7 @@ for (const file of commandFiles) {
 }
 const adminCommandFiles = fs
     .readdirSync("./adminCommands")
-    .filter((file) => file.endsWith(".js"));
+    .filter((file) => file.endsWith(".js") || file.endsWith(".ts"));
 for (const file of adminCommandFiles) {
     const command = require(`./adminCommands/${file}`);
     console.log(`관리자 명령어 불러오는 중.. (${command.data.name})`);
@@ -58,7 +58,9 @@ client.on("messageCreate", (message) => __awaiter(void 0, void 0, void 0, functi
     if (message.author.bot)
         return;
     console.log("msg");
-    if (!message.content.toLowerCase().startsWith("=admin") ||
+    if (!message.content
+        .toLowerCase()
+        .startsWith(config.adminPrefix + "admin") ||
         !config.adminIDs.includes(message.author.id))
         return;
     console.log(message.content);

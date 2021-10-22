@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import { MessageEmbed } from "discord.js";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -18,7 +19,7 @@ module.exports = {
         if (!guildQueue) {
             await interaction.editReply({
                 embeds: [
-                    new Discord.MessageEmbed()
+                    new MessageEmbed()
                         .setColor("#ff0000")
                         .setTitle(":warning: 오류")
                         .setDescription("재생 중인 음악이 없습니다."),
@@ -28,7 +29,7 @@ module.exports = {
             guildQueue.setPaused(true);
             await interaction.editReply({
                 embeds: [
-                    new Discord.MessageEmbed()
+                    new MessageEmbed()
                         .setColor("#ffff00")
                         .setTitle(":pause_button: 일시정지")
                         .setDescription(
@@ -50,7 +51,7 @@ module.exports = {
                     guildQueue.setPaused(false);
                     await interaction.followUp({
                         embeds: [
-                            new Discord.MessageEmbed()
+                            new MessageEmbed()
                                 .setColor("#0067a3")
                                 .setTitle(":arrow_forward: 재생 중")
                                 .setDescription(

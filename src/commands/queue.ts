@@ -1,5 +1,6 @@
 const { Song } = require("discord-music-player");
 import { SlashCommandBuilder } from "@discordjs/builders";
+import { MessageEmbed } from "discord.js";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -25,7 +26,7 @@ module.exports = {
         } else {
             await interaction.editReply({
                 embeds: [
-                    new Discord.MessageEmbed()
+                    new MessageEmbed()
                         .setColor("#ff0000")
                         .setTitle(":warning: 오류")
                         .setDescription("재생 목록이 없습니다."),

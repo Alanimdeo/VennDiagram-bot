@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import { MessageEmbed } from "discord.js";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -18,7 +19,7 @@ module.exports = {
         if (guildQueue) {
             await interaction.editReply({
                 embeds: [
-                    new Discord.MessageEmbed()
+                    new MessageEmbed()
                         .setColor("#008000")
                         .setTitle(":x: 삭제 완료")
                         .setDescription(
@@ -42,7 +43,7 @@ module.exports = {
         } else {
             await interaction.editReply({
                 embeds: [
-                    new Discord.MessageEmbed()
+                    new MessageEmbed()
                         .setColor("#ff0000")
                         .setTitle(":warning: 오류")
                         .setDescription("재생 중인 음악이 없습니다."),

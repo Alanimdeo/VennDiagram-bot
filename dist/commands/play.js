@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const builders_1 = require("@discordjs/builders");
+const discord_js_1 = require("discord.js");
 module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("재생")
@@ -34,7 +35,7 @@ module.exports = {
                 console.log(song);
                 yield interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new discord_js_1.MessageEmbed()
                             .setColor("#008000")
                             .setTitle(":white_check_mark: 추가 완료")
                             .setDescription(`[${song.name}](${song.url}) \`(${song.duration})\`을(를) 재생 목록에 추가했습니다.`)
@@ -48,7 +49,7 @@ module.exports = {
                         guildQueue.setPaused(false);
                         yield interaction.editReply({
                             embeds: [
-                                new Discord.MessageEmbed()
+                                new discord_js_1.MessageEmbed()
                                     .setColor("#0067a3")
                                     .setTitle(":arrow_forward: 재생")
                                     .setDescription(`[${guildQueue.nowPlaying.name}](${guildQueue.nowPlaying.url}) \`(${guildQueue.nowPlaying.duration})\`을(를) 다시 재생합니다.`)
@@ -59,7 +60,7 @@ module.exports = {
                     catch (err) {
                         yield interaction.editReply({
                             embeds: [
-                                new Discord.MessageEmbed()
+                                new discord_js_1.MessageEmbed()
                                     .setColor("#ff0000")
                                     .setTitle(":warning: 오류")
                                     .setDescription("재생할 음악이 없습니다."),
@@ -70,7 +71,7 @@ module.exports = {
                 else
                     yield interaction.editReply({
                         embeds: [
-                            new Discord.MessageEmbed()
+                            new discord_js_1.MessageEmbed()
                                 .setColor("#ff0000")
                                 .setTitle(":warning: 오류")
                                 .setDescription("재생할 음악이 없습니다."),

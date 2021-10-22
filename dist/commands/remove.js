@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const builders_1 = require("@discordjs/builders");
+const discord_js_1 = require("discord.js");
 module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("삭제")
@@ -25,7 +26,7 @@ module.exports = {
             if (guildQueue) {
                 yield interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new discord_js_1.MessageEmbed()
                             .setColor("#008000")
                             .setTitle(":x: 삭제 완료")
                             .setDescription(`[${guildQueue.songs[interaction.options.getInteger("번호") - 1].name}](${guildQueue.songs[interaction.options.getInteger("번호") - 1].url}) \`(${guildQueue.songs[interaction.options.getInteger("번호") - 1].duration})\`을 재생 목록에서 삭제했습니다.`),
@@ -36,7 +37,7 @@ module.exports = {
             else {
                 yield interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new discord_js_1.MessageEmbed()
                             .setColor("#ff0000")
                             .setTitle(":warning: 오류")
                             .setDescription("재생 중인 음악이 없습니다."),

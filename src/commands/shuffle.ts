@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import { MessageEmbed } from "discord.js";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,7 +15,7 @@ module.exports = {
                 guildQueue.shuffle();
                 await interaction.editReply({
                     embeds: [
-                        new Discord.MessageEmbed()
+                        new MessageEmbed()
                             .setColor("#ff0000")
                             .setTitle(":twisted_rightwards_arrows: 셔플")
                             .setDescription("곡을 섞었습니다."),
@@ -26,7 +27,7 @@ module.exports = {
         } else {
             await interaction.editReply({
                 embeds: [
-                    new Discord.MessageEmbed()
+                    new MessageEmbed()
                         .setColor("#ff0000")
                         .setTitle(":warning: 오류")
                         .setDescription("재생 중인 음악이 없습니다."),
