@@ -15,10 +15,7 @@ module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("이동")
         .setDescription("지정한 시간으로 이동합니다. `[시간:]분:초` 또는 `초` 형식으로 입력 가능합니다.")
-        .addStringOption((option) => option
-        .setName("시간")
-        .setDescription("이동할 시간을 입력하세요.")
-        .setRequired(true)),
+        .addStringOption((option) => option.setName("시간").setDescription("이동할 시간을 입력하세요.").setRequired(true)),
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             yield interaction.deferReply();
@@ -33,13 +30,9 @@ module.exports = {
                     var input = interaction.options.getString("시간").split(":");
                     displayTime = interaction.options.getString("시간");
                     if (input.length == 3)
-                        seekTime =
-                            Number(input[0]) * 3600000 +
-                                Number(input[1]) * 60000 +
-                                Number(input[2]) * 1000;
+                        seekTime = Number(input[0]) * 3600000 + Number(input[1]) * 60000 + Number(input[2]) * 1000;
                     else
-                        seekTime =
-                            Number(input[0]) * 60000 + Number(input[1]) * 1000;
+                        seekTime = Number(input[0]) * 60000 + Number(input[1]) * 1000;
                 }
                 else {
                     seekTime = Number(interaction.options.getString("시간")) * 1000;
@@ -82,12 +75,7 @@ module.exports = {
             }
             else {
                 yield interaction.editReply({
-                    embeds: [
-                        new discord_js_1.MessageEmbed()
-                            .setColor("#ff0000")
-                            .setTitle(":warning: 오류")
-                            .setDescription("재생 중인 음악이 없습니다."),
-                    ],
+                    embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생 중인 음악이 없습니다.")],
                 });
             }
         });

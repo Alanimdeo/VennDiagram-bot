@@ -15,9 +15,7 @@ module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("일시정지")
         .setDescription("음악을 일시정지합니다.")
-        .addNumberOption((option) => option
-        .setName("시간")
-        .setDescription("일시정지할 시간을 입력하세요. (초)")),
+        .addNumberOption((option) => option.setName("시간").setDescription("일시정지할 시간을 입력하세요. (초)")),
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             yield interaction.deferReply();
@@ -25,12 +23,7 @@ module.exports = {
             console.log(guildQueue);
             if (!guildQueue) {
                 yield interaction.editReply({
-                    embeds: [
-                        new discord_js_1.MessageEmbed()
-                            .setColor("#ff0000")
-                            .setTitle(":warning: 오류")
-                            .setDescription("재생 중인 음악이 없습니다."),
-                    ],
+                    embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생 중인 음악이 없습니다.")],
                 });
             }
             else {
@@ -40,9 +33,7 @@ module.exports = {
                         new discord_js_1.MessageEmbed()
                             .setColor("#ffff00")
                             .setTitle(":pause_button: 일시정지")
-                            .setDescription(`현재 재생 중인 [${guildQueue.nowPlaying.name}](${guildQueue.nowPlaying.url})을(를) ${interaction.options.getNumber("시간")
-                            ? `${interaction.options.getNumber("시간")}초 동안 `
-                            : ""}일시정지했습니다.\n\`/재생\` 명령어를 사용하여 다시 재생할 수 있습니다.`),
+                            .setDescription(`현재 재생 중인 [${guildQueue.nowPlaying.name}](${guildQueue.nowPlaying.url})을(를) ${interaction.options.getNumber("시간") ? `${interaction.options.getNumber("시간")}초 동안 ` : ""}일시정지했습니다.\n\`/재생\` 명령어를 사용하여 다시 재생할 수 있습니다.`),
                     ],
                 });
                 if (interaction.options.getNumber("시간")) {

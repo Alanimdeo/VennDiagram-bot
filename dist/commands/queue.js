@@ -13,9 +13,7 @@ const { Song } = require("discord-music-player");
 const builders_1 = require("@discordjs/builders");
 const discord_js_1 = require("discord.js");
 module.exports = {
-    data: new builders_1.SlashCommandBuilder()
-        .setName("목록")
-        .setDescription("재생 목록을 확인합니다."),
+    data: new builders_1.SlashCommandBuilder().setName("목록").setDescription("재생 목록을 확인합니다."),
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             yield interaction.deferReply();
@@ -30,12 +28,7 @@ module.exports = {
             }
             else {
                 yield interaction.editReply({
-                    embeds: [
-                        new discord_js_1.MessageEmbed()
-                            .setColor("#ff0000")
-                            .setTitle(":warning: 오류")
-                            .setDescription("재생 목록이 없습니다."),
-                    ],
+                    embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생 목록이 없습니다.")],
                 });
             }
         });

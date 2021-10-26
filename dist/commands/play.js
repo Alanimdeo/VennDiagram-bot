@@ -15,10 +15,7 @@ module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("재생")
         .setDescription("음악을 재생합니다.")
-        .addStringOption((option) => option
-        .setName("제목")
-        .setDescription("음악 제목을 입력하세요.")
-        .setRequired(false)),
+        .addStringOption((option) => option.setName("제목").setDescription("음악 제목을 입력하세요.").setRequired(false)),
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             yield interaction.deferReply();
@@ -26,9 +23,7 @@ module.exports = {
             if (interaction.options.getString("제목")) {
                 let queue = interaction.client.player.createQueue(interaction.guildId);
                 yield queue.join(interaction.member.voice.channel);
-                let song = yield queue
-                    .play(interaction.options.getString("제목"))
-                    .catch(() => {
+                let song = yield queue.play(interaction.options.getString("제목")).catch(() => {
                     if (!guildQueue)
                         queue.stop();
                 });
@@ -59,23 +54,13 @@ module.exports = {
                     }
                     catch (err) {
                         yield interaction.editReply({
-                            embeds: [
-                                new discord_js_1.MessageEmbed()
-                                    .setColor("#ff0000")
-                                    .setTitle(":warning: 오류")
-                                    .setDescription("재생할 음악이 없습니다."),
-                            ],
+                            embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생할 음악이 없습니다.")],
                         });
                     }
                 }
                 else
                     yield interaction.editReply({
-                        embeds: [
-                            new discord_js_1.MessageEmbed()
-                                .setColor("#ff0000")
-                                .setTitle(":warning: 오류")
-                                .setDescription("재생할 음악이 없습니다."),
-                        ],
+                        embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생할 음악이 없습니다.")],
                     });
             }
         });

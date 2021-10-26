@@ -27,37 +27,20 @@ module.exports = {
             yield interaction.deferReply();
             let guildQueue = interaction.client.player.getQueue(interaction.guildId);
             if (guildQueue) {
-                const emoji = interaction.options.getInteger("설정") == 0
-                    ? "arrow_right"
-                    : interaction.options.getInteger("설정") == 1
-                        ? "repeat"
-                        : "repeat_one";
+                const emoji = interaction.options.getInteger("설정") == 0 ? "arrow_right" : interaction.options.getInteger("설정") == 1 ? "repeat" : "repeat_one";
                 yield interaction.editReply({
                     embeds: [
                         new discord_js_1.MessageEmbed()
                             .setColor("#008000")
-                            .setTitle(`:${emoji}: 반복 ${interaction.options.getInteger("설정") == 0
-                            ? "해제"
-                            : "설정"}됨`)
-                            .setDescription(`반복이 ${interaction.options.getInteger("설정") == 0
-                            ? "해제"
-                            : "설정"}되었습니다.${interaction.options.getInteger("설정") > 0
-                            ? `\n현재 설정: ${interaction.options.getInteger("설정") == 1
-                                ? "곡"
-                                : "목록"}`
-                            : ""}`),
+                            .setTitle(`:${emoji}: 반복 ${interaction.options.getInteger("설정") == 0 ? "해제" : "설정"}됨`)
+                            .setDescription(`반복이 ${interaction.options.getInteger("설정") == 0 ? "해제" : "설정"}되었습니다.${interaction.options.getInteger("설정") > 0 ? `\n현재 설정: ${interaction.options.getInteger("설정") == 1 ? "곡" : "목록"}` : ""}`),
                     ],
                 });
                 guildQueue.setRepeatMode(interaction.options.getInteger("설정"));
             }
             else {
                 yield interaction.editReply({
-                    embeds: [
-                        new discord_js_1.MessageEmbed()
-                            .setColor("#ff0000")
-                            .setTitle(":warning: 오류")
-                            .setDescription("재생 중인 음악이 없습니다."),
-                    ],
+                    embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생 중인 음악이 없습니다.")],
                 });
             }
         });

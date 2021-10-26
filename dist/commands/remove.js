@@ -15,10 +15,7 @@ module.exports = {
     data: new builders_1.SlashCommandBuilder()
         .setName("삭제")
         .setDescription("재생 목록에서 곡을 삭제합니다.")
-        .addIntegerOption((option) => option
-        .setName("번호")
-        .setDescription("곡의 번호를 입력하세요.")
-        .setRequired(true)),
+        .addIntegerOption((option) => option.setName("번호").setDescription("곡의 번호를 입력하세요.").setRequired(true)),
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             yield interaction.deferReply();
@@ -36,12 +33,7 @@ module.exports = {
             }
             else {
                 yield interaction.editReply({
-                    embeds: [
-                        new discord_js_1.MessageEmbed()
-                            .setColor("#ff0000")
-                            .setTitle(":warning: 오류")
-                            .setDescription("재생 중인 음악이 없습니다."),
-                    ],
+                    embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생 중인 음악이 없습니다.")],
                 });
             }
         });

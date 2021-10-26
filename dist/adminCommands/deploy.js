@@ -19,9 +19,6 @@ module.exports = {
             commands.forEach((command) => {
                 guildCommands.push(command.data);
             });
-            guildCommands;
-            console.log(guildCommands);
-            // const commandNames = guildCommands.map((command) => command.data.name);
             yield message.guild.commands.set(guildCommands);
             yield message.reply(`Complete! Commands(${guildCommands.length}): ` +
                 guildCommands

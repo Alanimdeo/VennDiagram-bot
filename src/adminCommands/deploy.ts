@@ -8,9 +8,6 @@ module.exports = {
         commands.forEach((command: { data: any }) => {
             guildCommands.push(command.data);
         });
-        guildCommands;
-        console.log(guildCommands);
-        // const commandNames = guildCommands.map((command) => command.data.name);
         await message.guild.commands.set(guildCommands);
         await message.reply(
             `Complete! Commands(${guildCommands.length}): ` +
