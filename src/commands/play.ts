@@ -15,7 +15,6 @@ module.exports = {
             let song = await queue.play(interaction.options.getString("제목")).catch(() => {
                 if (!guildQueue) queue.stop();
             });
-            console.log(song);
             await interaction.editReply({
                 embeds: [
                     new MessageEmbed()

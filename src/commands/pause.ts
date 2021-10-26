@@ -9,7 +9,6 @@ module.exports = {
     async execute(interaction: any) {
         await interaction.deferReply();
         let guildQueue = interaction.client.player.getQueue(interaction.guildId);
-        console.log(guildQueue);
         if (!guildQueue) {
             await interaction.editReply({
                 embeds: [new MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생 중인 음악이 없습니다.")],

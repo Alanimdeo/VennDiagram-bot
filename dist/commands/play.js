@@ -27,7 +27,6 @@ module.exports = {
                     if (!guildQueue)
                         queue.stop();
                 });
-                console.log(song);
                 yield interaction.editReply({
                     embeds: [
                         new discord_js_1.MessageEmbed()

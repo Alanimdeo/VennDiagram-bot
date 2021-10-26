@@ -56,5 +56,8 @@ client.on("messageCreate", (message) => __awaiter(void 0, void 0, void 0, functi
         return;
     yield command.execute(message, client.commands);
 }));
+client.player.on("error", (queue, err) => {
+    console.error(err);
+});
 console.log("Discord 서버에 로그인 중..");
 client.login(config.token);

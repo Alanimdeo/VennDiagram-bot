@@ -58,5 +58,9 @@ client.on("messageCreate", async (message: typeof Discord.Message) => {
     await command.execute(message, client.commands);
 });
 
+client.player.on("error", (queue: any, err: Error) => {
+    console.error(err);
+});
+
 console.log("Discord 서버에 로그인 중..");
 client.login(config.token);

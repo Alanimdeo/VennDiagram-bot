@@ -20,7 +20,6 @@ module.exports = {
         return __awaiter(this, void 0, void 0, function* () {
             yield interaction.deferReply();
             let guildQueue = interaction.client.player.getQueue(interaction.guildId);
-            console.log(guildQueue);
             if (!guildQueue) {
                 yield interaction.editReply({
                     embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("재생 중인 음악이 없습니다.")],
