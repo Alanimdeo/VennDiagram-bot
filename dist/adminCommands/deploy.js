@@ -16,8 +16,11 @@ module.exports = {
     execute(message, commands) {
         return __awaiter(this, void 0, void 0, function* () {
             const guildCommands = [];
-            commands.forEach((command) => {
-                guildCommands.push(command.data);
+            yield commands.map((command) => {
+                guildCommands.push({
+                    name: command.data.name,
+                    description: command.data.description,
+                });
             });
             yield message.guild.commands.set(guildCommands);
             yield message.reply(`Complete! Commands(${guildCommands.length}): ` +

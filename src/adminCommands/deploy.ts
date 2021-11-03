@@ -5,8 +5,11 @@ module.exports = {
     },
     async execute(message: any, commands: any) {
         const guildCommands: any[] = [];
-        commands.forEach((command: { data: any }) => {
-            guildCommands.push(command.data);
+        await commands.map((command: { data: any }) => {
+            guildCommands.push({
+                name: command.data.name,
+                description: command.data.description,
+            });
         });
         await message.guild.commands.set(guildCommands);
         await message.reply(
