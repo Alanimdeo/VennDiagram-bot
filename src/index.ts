@@ -9,7 +9,7 @@ const client = new Discord.Client({
     intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_VOICE_STATES],
 });
 client.player = new Player(client, {
-    leaveOnEmpty: false,
+    leaveOnEmpty: true,
     leaveOnEnd: false,
 });
 
