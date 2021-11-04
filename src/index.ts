@@ -16,7 +16,7 @@ client.player = new Player(client, {
 client.commands = new Discord.Collection();
 client.adminCommands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync("./commands").filter((file: any) => file.endsWith(".js"));
+const commandFiles = fs.readdirSync("./commands").filter((file: string) => file.endsWith(".js") || file.endsWith(".ts"));
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);

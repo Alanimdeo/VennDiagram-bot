@@ -5,12 +5,7 @@ module.exports = {
     },
     async execute(message: any, commands: any) {
         const guildCommands: any[] = [];
-        await commands.map((command: { data: any }) => {
-            guildCommands.push({
-                name: command.data.name,
-                description: command.data.description,
-            });
-        });
+        await commands.map((command: { data: any }) => guildCommands.push(command.data.toJSON()));
         await message.guild.commands.set(guildCommands);
         await message.reply(
             `Complete! Commands(${guildCommands.length}): ` +

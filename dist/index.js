@@ -23,7 +23,7 @@ client.player = new Player(client, {
 });
 client.commands = new Discord.Collection();
 client.adminCommands = new Discord.Collection();
-const commandFiles = fs.readdirSync("./commands").filter((file) => file.endsWith(".js"));
+const commandFiles = fs.readdirSync("./commands").filter((file) => file.endsWith(".js") || file.endsWith(".ts"));
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     console.log(`명령어 불러오는 중.. (${command.data.name})`);
