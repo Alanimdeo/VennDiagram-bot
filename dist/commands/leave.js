@@ -16,16 +16,26 @@ module.exports = {
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             yield interaction.deferReply();
-            let guildQueue = interaction.client.player.getQueue(interaction.guildId);
-            if (guildQueue) {
-                yield guildQueue.leave();
+            // let guildQueue = interaction.client.player.getQueue(interaction.guildId);
+            if (interaction.guild.me.voice !== undefined) {
+                yield interaction.guild.me.voice.disconnect();
                 yield interaction.editReply({
-                    embeds: [new discord_js_1.MessageEmbed().setColor("#008000").setTitle(":white_check_mark: 완료").setDescription("봇을 퇴장시켰습니다.")],
+                    embeds: [
+                        new discord_js_1.MessageEmbed()
+                            .setColor("#008000")
+                            .setTitle(":white_check_mark: 완료")
+                            .setDescription("봇을 퇴장시켰습니다."),
+                    ],
                 });
             }
             else {
                 yield interaction.editReply({
-                    embeds: [new discord_js_1.MessageEmbed().setColor("#ff0000").setTitle(":warning: 오류").setDescription("참가한 채널이 없습니다.")],
+                    embeds: [
+                        new discord_js_1.MessageEmbed()
+                            .setColor("#ff0000")
+                            .setTitle(":warning: 오류")
+                            .setDescription("참가한 채널이 없습니다."),
+                    ],
                 });
             }
         });
